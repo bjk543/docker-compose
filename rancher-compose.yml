@@ -1,0 +1,29 @@
+version: '2'
+services:
+  web:
+    scale: 2
+    lb_config:
+      certs: []
+      port_rules:
+      - hostname: ''
+        path: ''
+        priority: 1
+        protocol: http
+        service: api
+        source_port: 3000
+        target_port: 3000
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+  api:
+    scale: 1
+  redis:
+    scale: 1
+  mongodb:
+    scale: 1
+  elasticsearch:
+    scale: 1
+  
